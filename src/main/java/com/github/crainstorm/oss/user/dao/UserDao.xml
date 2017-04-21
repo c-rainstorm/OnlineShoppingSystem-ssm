@@ -6,7 +6,7 @@
 
     <insert id="insertUser" parameterType="com.github.crainstorm.oss.user.entity.User">
         INSERT INTO user(username, password, nickname, phone, birthday)
-        VALUES (#{username}, md5(#{password}), #{nickname}, #{phone}, #{birthday});
+        VALUES (#{username}, #{password}, #{nickname}, #{phone}, #{birthday});
     </insert>
 
     <select id="checkLogin" parameterType="com.github.crainstorm.oss.user.entity.User" resultType="int">

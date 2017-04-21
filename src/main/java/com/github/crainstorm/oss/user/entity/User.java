@@ -1,24 +1,16 @@
 package com.github.crainstorm.oss.user.entity;
 
 import com.github.crainstorm.oss.util.CheckArgument;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by chen on 4/17/17.
  */
-@Component
-@Scope("prototype")
 public class User {
     private String username;
     private String password;
     private String nickname;
     private String phone;
-    private Date birthday;
+    private String birthday;
 
     public User() {
 
@@ -69,19 +61,17 @@ public class User {
         this.phone = phone;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) throws ParseException {
+    public void setBirthday(String birthday) {
         CheckArgument.notEmpty(birthday, "birthday");
         if (!birthday.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException(
                     "The birthday must be like this: 2000-01-01. But your value is " + birthday);
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date = dateFormat.parse(birthday);
-        this.birthday = new Date(date.getTime());
+       this.birthday = birthday;
     }
 
     @Override

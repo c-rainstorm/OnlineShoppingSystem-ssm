@@ -8,11 +8,6 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-//https://my.oschina.net/building/blog/137824
-//http://stackoverflow.com/questions/26365942/log4j2-debug-level-logging-except-for-spring
-//http://stackoverflow.com/questions/28934834/spring-logs-not-written-in-log4j2
 
 /**
  * Created by chen on 4/17/17.
@@ -25,7 +20,7 @@ public class UserAction {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = "/checkLogin")
+    @RequestMapping("/checkLogin")
     public String checkLogin(User user) {
         logger.trace("enter checkLogin...");
         if (logger.isDebugEnabled()) {
@@ -44,10 +39,10 @@ public class UserAction {
     public String testTransaction() {
         if (AopUtils.isAopProxy(service)) {
             logger.debug("service is aop proxy..");
-            service.testTransaction();
-        }else {
+        } else {
             logger.debug("service isn't aop proxy...");
         }
+        service.testTransaction();
 
         return "redirect:/index.jsp";
     }
