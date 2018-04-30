@@ -2,10 +2,13 @@ package com.github.crainstorm.oss.user.entity;
 
 import com.github.crainstorm.oss.util.CheckArgument;
 
+import java.util.List;
+
 /**
  * Created by chen on 4/17/17.
  */
 public class User {
+    private List<Addr> addrs;
     private String username;
     private String password;
     private String nickname;
@@ -14,6 +17,14 @@ public class User {
 
     public User() {
 
+    }
+
+    public List<Addr> getAddrs() {
+        return addrs;
+    }
+
+    public void setAddrs(List<Addr> addrs) {
+        this.addrs = addrs;
     }
 
     public String getUsername() {
@@ -77,11 +88,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "addrs=" + addrs +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", phone='" + phone + '\'' +
-                ", birthday=" + birthday +
+                ", birthday='" + birthday + '\'' +
                 '}';
     }
 }
