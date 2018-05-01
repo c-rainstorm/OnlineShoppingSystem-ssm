@@ -48,4 +48,10 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>
+
+    <bean class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <constructor-arg name="standaloneConfig" ref="standaloneConfig"/>
+    </bean>
+    <bean id="standaloneConfig" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration"/>
 </beans>

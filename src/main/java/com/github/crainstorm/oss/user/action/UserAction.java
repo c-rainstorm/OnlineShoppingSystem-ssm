@@ -6,15 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by chen on 4/17/17.
@@ -29,8 +27,10 @@ public class UserAction {
 
     @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
     @ResponseBody
-    public String checkLogin(@RequestBody User user) {
-        logger.trace("enter checkLogin...");
+    public String checkLogin(User user, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", 1);
+        logger.trace("enter checkLogin..." + session.getAttribute("userId"));
         if (logger.isDebugEnabled()) {
             logger.debug(user);
         }
